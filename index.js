@@ -32,5 +32,19 @@ server.get('/users/:id', (req,res) => {
     })
 })
 
+server.post('/users', (req,res) => {
+    const newUser = req.body;
+    if(!newUser.hasOwnProperty('name') || !newUser.hasOwnProperty('bio')){
+        res.status(400).json({ errorMessage: "Please provide name and bio for the user." })
+    } else {
+        db.insert(newUser).then(id => {
+            res.status(201).json(id)
+        }).catch(err => {
+            res.status(500).json({ error: "There was an error while saving the user to the database" })
+        })
+    }
+    
+})
+
 
 server.listen(9000, () => console.log('API is running on port 9000'))
