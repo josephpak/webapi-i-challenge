@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux'
 import { fetchUsers } from './actions'
+import styled from 'styled-components';
 
 import List from './components/List'
+
+const AppWrapper = styled.div`
+  display: flex;
+  justify-content: center;      
+`
 
 class App extends Component {
   
@@ -12,10 +18,12 @@ class App extends Component {
   }
   
   render() {
+    
+
     return (
-      <div className="App">
+      <AppWrapper>
         <List users={this.props.users}/>
-      </div>
+      </AppWrapper>
     );
   }
 }

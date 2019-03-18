@@ -28,7 +28,7 @@ export const reducer = (state = initialState, action) => {
     case FETCH_USERS_FAILURE:
       return {
         ...state,
-        error: "Fetch failure",
+        error: "Fetch Failure",
         fetching: false
       };
     default:
