@@ -1,7 +1,19 @@
 import {
-    FETCH_USERS_STARTED,
+    FETCH_USERS_START,
     FETCH_USERS_SUCCESS,
-    FETCH_USERS_FAILURE
+    FETCH_USERS_FAILURE,
+
+    DELETE_USER_START,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAILURE,
+
+    CREATE_USER_START,
+    CREATE_USER_SUCCESS,
+    CREATE_USER_FAILURE,
+
+    UPDATE_USER_START,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAILURE,
 } from "../types";
 
 const initialState = {
@@ -12,7 +24,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_USERS_STARTED:
+    case FETCH_USERS_START:
       return {
         ...state,
         fetching: true,

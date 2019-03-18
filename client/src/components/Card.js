@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { deleteUser } from '../actions'
 
 const CardWrapper = styled.div`
     height: 100px;
@@ -14,14 +16,22 @@ const CardWrapper = styled.div`
 `
 
 class Card extends Component {
-  render() {
+  
+    handleDelete = e => {
+        e.preventDefault();
+        this.props.deleteUser(this.props.id)
+    }
+
+    render() {
     return (
       <CardWrapper>
         <div>
             <p>{this.props.name}</p>
         </div>
         <div>
-            <button>Delete</button>
+            <button
+            onClick={this.handleDelete}
+            >Delete</button>
             <button>Update</button>
         </div> 
       </CardWrapper>
@@ -29,4 +39,7 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export default connect(
+    null,
+    { deleteUser }
+)(Card);
