@@ -85,7 +85,7 @@ When the client makes a `GET` request to `/api/users`:
 - [x] If there's an error in retrieving the _users_ from the database:
   - [x] cancel the request.
   - [x] respond with HTTP status code `500`.
-  - return the following JSON object: `{ error: "The users information could not be retrieved." }`.
+  - [x] return the following JSON object: `{ error: "The users information could not be retrieved." }`.
 
 When the client makes a `GET` request to `/api/users/:id`:
 
