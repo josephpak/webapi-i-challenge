@@ -5,13 +5,16 @@ import { fetchUsers } from './actions'
 import styled from 'styled-components';
 
 import List from './components/List'
+import AddUserForm from './components/AddUserForm';
 
 const AppWrapper = styled.div`
   display: flex;
-  justify-content: center;      
+  flex-direction: column;
+  align-items: center;
 `
 
 class App extends Component {
+
   componentDidMount() {
     this.props.fetchUsers()
   }
@@ -19,9 +22,11 @@ class App extends Component {
   render() {
     return (
       <AppWrapper>
-        <List 
+        <AddUserForm/>
+        {this.props.fetching ? (<p>Loading...</p>) : 
+        (<List 
         users={this.props.users}
-        />
+        />)}
       </AppWrapper>
     );
   }

@@ -45,7 +45,7 @@ class Card extends Component {
     };
     
     handleUpdate = e => {
-        this.props.updateUser(this.state.user, this.props.id)
+        this.props.updateUser(this.state.user, this.props.id, this.props.created_at)
         this.setState({
 			isEditing: !this.state.isEditing
 		});

@@ -54,7 +54,7 @@ export const deleteUser = userId => dispatch => {
 		});
 }
 
-export const updateUser = (user, userId) => dispatch => {
+export const updateUser = (user, userId, createdAt) => dispatch => {
   dispatch({
 		type: UPDATE_USER_START
   });
@@ -62,7 +62,9 @@ export const updateUser = (user, userId) => dispatch => {
   axios
 		.put(`http://localhost:9000/users/${userId}`, user)
 		.then(res => {
-      const updated = {...user, id: userId}
+      const d = new Date()
+      const date = d.toISOString()
+      const updated = {...user, id: userId, created_at: createdAt, updated_at: date}
 			dispatch({
 				type: UPDATE_USER_SUCCESS,
 				payload: updated
@@ -74,4 +76,22 @@ export const updateUser = (user, userId) => dispatch => {
 				payload: err
 			});
 		});
+}
+
+export const createUser = user =>  dispatch => {
+  dispatch({
+    type: CREATE_USER_START
+  });
+
+  axios
+    .post('http://localhost:9000/users', user)
+    .then(res => {
+      const d = new Date()
+      const date = d.toISOString()
+      const newUser = {...user, created_at: date, updated_at: date}
+      dispatch({
+        type: CREATE_USER_SUCCESS,
+        payload: {...newUser, id: res.data}
+      })
+    })
 }

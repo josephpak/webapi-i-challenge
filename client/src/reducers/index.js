@@ -88,7 +88,28 @@ export const reducer = (state = initialState, action) => {
         ...state,
         error: "Update Failure",
         fetching: false
+      };
+      
+    case CREATE_USER_START:
+      return {
+        ...state,
+        fetching: true,
+        error: null
+      }
+    case CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        users: [...state.users, action.payload],
+        error: null
+      };
+    case CREATE_USER_FAILURE:
+      return {
+        ...state,
+        error: "Create Failure",
+        fetching: false
       };    
+  
 
     default:
       return state;
