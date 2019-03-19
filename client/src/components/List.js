@@ -6,7 +6,7 @@ class List extends Component {
     return (
       <div>
         {this.props.users.map(user => (
-            <Card {...user}/>
+            <Card {...user} />
         ))}
       </div>
     )

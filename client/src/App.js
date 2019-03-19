@@ -12,17 +12,16 @@ const AppWrapper = styled.div`
 `
 
 class App extends Component {
-  
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchUsers()
   }
   
   render() {
-    
-
     return (
       <AppWrapper>
-        <List users={this.props.users}/>
+        <List 
+        users={this.props.users}
+        />
       </AppWrapper>
     );
   }
@@ -30,7 +29,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    fetching: state.fetching
   }
 }
 

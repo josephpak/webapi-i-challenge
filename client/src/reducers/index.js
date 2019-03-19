@@ -43,6 +43,53 @@ export const reducer = (state = initialState, action) => {
         error: "Fetch Failure",
         fetching: false
       };
+
+    case DELETE_USER_START:
+      return {
+        ...state,
+        fetching: true,
+        error: null
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        users: state.users.filter(user => (
+          user.id !== action.payload
+        )),
+        error: null
+      };
+    case DELETE_USER_FAILURE:
+      return {
+        ...state,
+        error: "Delete Failure",
+        fetching: false
+      };
+
+    case UPDATE_USER_START:
+      return {
+        ...state,
+        fetching: true,
+        error: null
+      }
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        fetching: false,
+        users: state.users.map(user =>
+					user.id === action.payload.id
+						? action.payload
+						: user
+				),
+        error: null
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        error: "Update Failure",
+        fetching: false
+      };    
+
     default:
       return state;
   }
